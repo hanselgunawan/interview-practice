@@ -24,6 +24,11 @@
  if yes, run through the recursion
  if no, return false immediately
 
+
+  Question:
+     (1)
+  (2)   (2)
+ (3)(4)(4)(3)
  */
 function checkSymmetric(node1, node2)
 {
