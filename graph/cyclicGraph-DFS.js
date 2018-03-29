@@ -34,7 +34,7 @@ let canFinish = function(numCourses, prerequisites) {
     let found, root;
     if(prerequisites.length == 0 || prerequisites.length == 1) return true;
     visiting.push(prerequisites[0][0]);
-    while(visiting.length!=0)
+    while(visited.length!=numCourses)
     {
         found = false;
         root = visiting[visiting.length-1];//grab the last insert / top
