@@ -28,7 +28,7 @@ function countMaxSubArray(nums, start, total)
 
 var maxSubArray = function(nums) {
     if(nums.length==1) return nums[0];
-    let grandTotal = -999999;
+    let grandTotal = -999999;//use Number.MIN_VALUE in Javascript to get the lowest number
     let start = 1;
     grandTotal = countMaxSubArray(nums, start, grandTotal);
     return grandTotal;
