@@ -19,6 +19,7 @@ var removeDuplicates = function(nums) {
 
     while(position<nums.length-1)
     {
+        console.log(nums.length);
         if(nums[position] == nums[position+1])
         {
             nums.splice(position+1, 1);//splice(index, howMany)
