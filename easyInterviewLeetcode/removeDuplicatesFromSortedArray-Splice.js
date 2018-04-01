@@ -27,8 +27,7 @@ var removeDuplicates = function(nums) {
         {
             position ++;
         }
-        console.log(nums);
     }
 
-    return nums;
+    return nums.length;
 };
