@@ -15,7 +15,7 @@
  1. 1 step + 1 step
  2. 2 steps
 
- 
+
  Example 2:
 
  Input: 3
@@ -44,3 +44,14 @@ var climbStairs = function(n) {
     combination = countStepCombination(n, combination);
     return combination;
 };
+
+/*
+1 stair = 1
+2 stairs = 2
+3 stairs = 3
+4 stairs = 5
+5 stairs = 8
+-------------
+
+1,2,3,5,8 <-- fibonacci
+ */
