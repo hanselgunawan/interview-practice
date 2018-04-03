@@ -1,21 +1,3 @@
-/*
- You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
-
- You may assume the two numbers do not contain any leading zero, except the number 0 itself.
-
- Example
-
- Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
- Output: 7 -> 0 -> 8
- Explanation: 342 + 465 = 807.
- */
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -37,7 +19,7 @@ function convertLinkToInt(list)
         num = num * 10 + list.val;
         list = list.next;
     }
-    return num;
+    return num;//it will fail if the linked list start with '0'. Need to convert it into String instead of Integer
 }
 
 function reverseInt(number)
@@ -55,14 +37,14 @@ function convertIntToList(resultList, total)
 {
     let counter = total.toString().length;
     let currNode = resultList;
-    while(counter > 0)
+    while(counter > 0)//we use counter to store 0 if there's a number that's start with 0, such as: '01', '012'
     {
         if(currNode.val == null)
         {
-            currNode.val = total%10;
-            total = parseInt(total/10);
+            currNode.val = total%10;//it will grab the last number
+            total = parseInt(total/10);//divide the number by 10 to decrease the length of the number
             currNode.next = null;
-            currNode = resultList;
+            currNode = resultList;//resultList should stay in the HEAD, and currNode is the one who walk through the list
         }
         else
         {
@@ -87,17 +69,18 @@ var addTwoNumbers = function(l1, l2) {
     let total = 0;
     let resultList = new ListNode();
 
-    //convert linked list to an integer
+    //convert linked list to an integer, ex: [3]->[4] to 34
     num1 = convertLinkToInt(l1);
     num2 = convertLinkToInt(l2);
 
-    //reverse the integer
+    //reverse the integer, ex: 34 to 43
     num1 = reverseInt(num1);
     num2 = reverseInt(num2);
 
     //add 2 numbers
     total = num1 + num2;
 
+    //convert integer to list, ex: 43 to [4]->[3]
     resultList = convertIntToList(resultList, total);
 
     return resultList;
