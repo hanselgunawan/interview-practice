@@ -16,13 +16,45 @@
  There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2.
  Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3].
  Another correct ordering is [0,2,1,3].
- */
+
+ Note:
+ The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+ You may assume that there are no duplicate edges in the input prerequisites.
+*/
 
 /**
  * @param {number} numCourses
  * @param {number[from][to]} prerequisites
  * @return {number[]}
  */
+
+/*
+SPECIAL CASES:
+1)
+5
+[[1,0]]
+result: [4,3,2,0,1]
+
+2)
+5
+[]
+result: [4,3,2,1,0]
+
+3)
+2
+[1,0],[0,1]
+result: []
+*/
+
+function checkCyclic(visiting, toBePushedNum)
+{
+    for(let j=0;j<visiting.length;j++)
+    {
+        if(toBePushedNum==visiting[j]) return false;
+    }
+    return true;
+}
+
 function dfs(start, visiting, visited, graph, resultArr, numCourses)
 {
     if(resultArr.length!=numCourses)
@@ -32,10 +64,17 @@ function dfs(start, visiting, visited, graph, resultArr, numCourses)
         {
             if(graph[i][1]==start && !visited[graph[i][0]])
             {
-                visiting.push(graph[i][0]);
-                start = graph[i][0];
-                found = true;
-                break;
+                if(checkCyclic(visiting, graph[i][0]))//duplicate num in visiting arr = cycle exist!
+                {
+                    visiting.push(graph[i][0]);
+                    start = graph[i][0];
+                    found = true;
+                    break;
+                }
+                else
+                {
+                    return [];
+                }
             }
         }
         if(!found)
@@ -43,7 +82,7 @@ function dfs(start, visiting, visited, graph, resultArr, numCourses)
             let popNumber = visiting.pop();
             visited[popNumber] = true;
             start = visiting[visiting.length-1];
-            resultArr.unshift(popNumber);//use unshift so we don't have to reverse the array
+            resultArr.unshift(popNumber);
         }
         resultArr = dfs(start, visiting, visited, graph, resultArr, numCourses);
     }
@@ -52,7 +91,15 @@ function dfs(start, visiting, visited, graph, resultArr, numCourses)
 }
 
 var findOrder = function(numCourses, prerequisites) {
-    if(numCourses <= 1) return [];
+    if(prerequisites.length==0 && numCourses>0)//if there's no prerequisites BUT there's a course,
+    {                                         //store the result in descending order.
+        let prereqArr = [];
+        for(let i=0;i<numCourses;i++)
+        {
+            prereqArr.unshift(i);
+        }
+        return prereqArr;
+    }
     let start = prerequisites[0][1];
     let visiting = [];
     let visited = new Array(numCourses);
