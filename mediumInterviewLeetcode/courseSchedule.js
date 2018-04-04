@@ -44,6 +44,11 @@ result: [4,3,2,1,0]
 2
 [1,0],[0,1]
 result: []
+
+4)
+5
+[1,0]
+result: [4,3,2,0,1]
 */
 
 function checkCyclic(visiting, toBePushedNum)
@@ -55,6 +60,12 @@ function checkCyclic(visiting, toBePushedNum)
     return true;
 }
 
+//start = start endpoint / node / course
+//visiting = to monitor cyclic and traversal
+//visited = a fixed array to monitor visited node / course
+//graph = the prerequistes itself
+//resultArr = if there's no more path, push to this array as a result
+//numCourses = run recursion until resultArr.length is NOT equal to numCourses (all visited)
 function dfs(start, visiting, visited, graph, resultArr, numCourses)
 {
     if(resultArr.length!=numCourses)
@@ -81,8 +92,8 @@ function dfs(start, visiting, visited, graph, resultArr, numCourses)
         {
             let popNumber = visiting.pop();
             visited[popNumber] = true;
-            start = visiting[visiting.length-1];
-            resultArr.unshift(popNumber);
+            start = visiting[visiting.length-1];//backtracking with visiting stack
+            resultArr.unshift(popNumber);//use unshift, so we don't have to reverse the array
         }
         resultArr = dfs(start, visiting, visited, graph, resultArr, numCourses);
     }
@@ -94,9 +105,9 @@ var findOrder = function(numCourses, prerequisites) {
     if(prerequisites.length==0 && numCourses>0)//if there's no prerequisites BUT there's a course,
     {                                         //store the result in descending order.
         let prereqArr = [];
-        for(let i=0;i<numCourses;i++)
+        for(let i=numCourses-1;i>=0;i--)//to handle a case where prereq = [] and numCourses > 0
         {
-            prereqArr.unshift(i);
+            prereqArr.push(i);
         }
         return prereqArr;
     }
