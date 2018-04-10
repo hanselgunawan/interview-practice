@@ -27,7 +27,7 @@ let anagramMappings = function(A, B) {
     let result = [];
     for(let i=0;i<B.length;i++)
     {
-        if(dict[B[i]]==null)    
+        if(dict[B[i]]==null)
         {
             let newArr = [];
             newArr.push(i);
