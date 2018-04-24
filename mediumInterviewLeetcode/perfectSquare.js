@@ -16,13 +16,74 @@
  * @param {number} n
  * @return {number}
  */
+// var numSquares = function(n) {
+//     var dp=[0];
+//
+//     for (var i=1;i<=n;i++)
+//         for (var j=Math.sqrt(i)|0; j>=1 ;j--)
+//             dp[i]=Math.min(dp[i] || n, dp[i-j*j]+1)
+//
+//
+//     return dp[n]
+// };
+
+//SOLUTION 2
+/**
+ * @param {number} n
+ * @return {number}
+ */
+function isPerfectSquare(num)
+{
+    return Math.sqrt(num)%1==0;
+}
+
+function countSquare(squaredNum, counter, totalNum)
+{
+    console.log(squaredNum,totalNum, counter);
+    if(totalNum==0) return counter;
+    for(let k=squaredNum;k>=1;k--)
+    {
+        if(isPerfectSquare(k))
+        {
+            if(totalNum-k>=0)
+            {
+                return countSquare(k, counter+1, totalNum-k);
+            }
+            else continue;
+        }
+    }
+}
+
 var numSquares = function(n) {
-    var dp=[0];
+    let minCounter = 10;
+    let counter = 0;
+    for(let i=n;i>=1;i--)
+    {
+        if(isPerfectSquare(i))
+        {
+            counter = countSquare(i, counter, n);
+            if(counter < minCounter)
+            {
+                minCounter = counter;
+                counter = 0;
+            }
+        }
+    }
+    return minCounter;
+};
 
-    for (var i=1;i<=n;i++)
-        for (var j=Math.sqrt(i)|0; j>=1 ;j--)
-            dp[i]=Math.min(dp[i] || n, dp[i-j*j]+1)
-
-
-    return dp[n]
+//SOLUTION 3
+var numSquares = function(n) {
+    minValue = 4
+    function countSquare(counter, totalNum)
+    {
+        if(totalNum == 0) if (counter < minValue) minValue = counter;
+        if(counter < minValue)
+        {
+            for(let k = Math.floor(Math.sqrt(totalNum)); k >= 1; k--)
+                countSquare(counter+1, totalNum-(k*k));
+        }
+    }
+    countSquare(0, n)
+    return minValue;
 };
