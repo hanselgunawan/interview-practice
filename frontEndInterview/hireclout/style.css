@@ -1,0 +1,181 @@
+/* Global resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "rooney-sans", Avenir-Book, Calibri, sans-serif;
+    color: #424242;
+    line-height: 1.4;
+}
+/* COLORS:
+  blue: #20A1D4;
+  green: #1CBC2C;
+  orange: #EF5F3C;
+  black: #424242;
+  grey: #777;
+  light grey: #eaeaea;
+*/
+
+/* Your CSS goes here */
+.fund-needed-info p
+{
+    font-size:15px;
+    width:50%;
+    color:#ffffff;
+    background-color:rgba(0,0,0,0.8);
+    padding:14.5px;
+    text-align:center;
+    border-radius:3px;
+}
+
+.remaining-fund
+{
+    font-weight:bold;
+}
+
+.caret
+{
+    color: rgba(0,0,0,0.8);
+    margin-left:43%;
+    font-size:12px;
+    margin-top:-4px;
+}
+
+.fund-meter
+{
+    border:1px solid #eaeaea;
+    background-color:rgba(234,234,234, 0.3);
+    width:50%;
+    height:15px;
+}
+
+.orange-meter
+{
+    border:1px solid #eaeaea;
+    background-color:#EF5F3C;
+    width:75%;
+    height:15px;
+}
+
+.recreation-info
+{
+    border:1px solid #eaeaea;
+    box-shadow:0px 2px #eaeaea;
+    padding:20px;
+    width:50%;
+    margin-bottom:15px;
+}
+
+.recreation-info p
+{
+    color: #777;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.remaining-day
+{
+    color: #EF5F3C;
+    font-weight:bold;
+}
+
+span.donorers
+{
+    font-weight:bold;
+}
+
+div.form-container
+{
+    display:inline-block;
+    margin:auto;
+}
+
+div.dollar-input
+{
+    display:inline-block;
+    color:#777;
+    width:50%;
+}
+
+.bundler
+{
+    display:table;
+    border:1px solid #eaeaea;
+    padding:12px;
+    font-weight:bold;
+    border-radius:3px;
+    width:100%;
+    margin-bottom:5px;
+}
+
+span.dollar-sign
+{
+    display:table-cell;
+    font-size:18px;
+}
+
+input.donation-input
+{
+    margin-left:3px;
+    font-size:18px;
+    color:#424242;
+    width:100%;
+    border:none;
+}
+
+div.dollar-input a
+{
+    font-size:14px;
+    text-decoration:none;
+    font-style:italic;
+    color: #20A1D4;
+}
+
+.give-btn-container
+{
+    display:inline-block;
+    position:absolute;
+    margin-left:12px;
+}
+
+.give-btn
+{
+    color:#ffffff;
+    background-color:#1CBC2C;
+    font-size:17px;
+    padding:15px 20px 15px 20px;
+    border-radius:3px;
+    letter-spacing:1px;
+}
+
+.recreation-buttons
+{
+    display:inline-block;
+    margin:auto;
+    width:50%;
+}
+
+.recreation-buttons button
+{
+    display:inline-block;
+    color: #777;
+    font-weight:bold;
+    padding: 10px;
+    font-size: 13px;
+    letter-spacing:0.25px;
+    border-radius:3px;
+    width:47%;
+    background-color:rgba(234,234,234, 0.3);
+}
+
+.recreation-buttons button:nth-child(1)
+{
+    float:left;
+}
+
+.recreation-buttons button:nth-child(2)
+{
+    float:right;
+}
