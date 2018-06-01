@@ -14,6 +14,20 @@
  Output: [1,2,2,3,5,6]
  */
 
+/*
+EDGE CASE:
+ [1,0]
+ 1
+ [2]
+ 1
+
+ [-1,-1,0,0,0,0]
+ 4
+ [-1,0]
+ 2
+ Expected: [-1,-1,-1,0,0,0]
+ */
+
 /**
  * @param {number[]} nums1
  * @param {number} m
@@ -33,7 +47,12 @@ var merge = function(nums1, m, nums2, n) {
         }
         else
         {
-            if(nums1[i]==0 && i>m)
+            if(nums1[i]==0 && i>=m)
+            {
+                nums1[i] = nums2[j];
+                j++;
+            }
+            else if(nums1[i]==0 && i==0)
             {
                 nums1[i] = nums2[j];
                 j++;
