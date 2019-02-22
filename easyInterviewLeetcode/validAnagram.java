@@ -83,3 +83,24 @@ class Solution {
         return true;
     }
 }
+
+// SOLUTION 3: Sort
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        
+        if(s.length() != t.length()) return false;
+        
+        // convert String to Char array
+        char[] s2 = s.toCharArray();
+        char[] t2 = t.toCharArray();
+        
+        // sort the array
+        Arrays.sort(s2);
+        Arrays.sort(t2);
+        
+        // compare if 2 arrays are equal
+        return Arrays.equals(s2,t2);
+        
+    }
+}
